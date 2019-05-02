@@ -82,7 +82,7 @@ UserSchema.statics.updateTodo = function (
   todoId: string,
   newtodo: ITodo) {
   return this.findOneAndUpdate({ uniqueId, 'todos._id': todoId }, {
-    $set: { 'data.$': newtodo },
+    $set: { 'todos.$': newtodo },
   });
 };
 
