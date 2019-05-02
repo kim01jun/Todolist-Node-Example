@@ -23,11 +23,14 @@ const UserSchema = new mongoose.Schema({
   accessToken: { type: String, required: true },
   uniqueId: { type: String, unique: true, required: true },
   name: { type: String, required: true },
-  projcets: [{
-    type: String,
-    default: ['Default'],
+  todos: [{
+    content: String,
+    dueDate: Date,
+    priority: Number,
+    labels: [String],
+    project: String,
+    done: Boolean,
   }],
-  labels: [String],
 }, { timestamps: true });
 
 UserSchema.statics.isExist = async function (
