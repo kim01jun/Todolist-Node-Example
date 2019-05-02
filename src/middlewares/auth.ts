@@ -20,7 +20,6 @@ const verifyJWT = (token: string) => new Promise<IPayload>((resolve, reject) => 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
 // tslint:disable-next-line: ter-indent
 try {
-  console.log(req.params);
   const params: IReqParam = req.params;
   const headers = req.headers;
   const payload: IPayload = await verifyJWT(headers.authorization as string);

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import * as ctrl from './ctrl';
 import auth from '../../middlewares/auth';
 
-const router = Router();
+const router = Router({ mergeParams: true });
 
 router.use(auth);
 router.post('/', ctrl.addTodo);
