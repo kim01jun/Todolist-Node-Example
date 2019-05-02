@@ -10,6 +10,9 @@
     "helmet": "^3.16.0",
     "mongoose": "^5.5.5"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "devDependencies": {
     "@types/helmet": "0.0.43",
     "@types/mongoose": "^5.3.27",
