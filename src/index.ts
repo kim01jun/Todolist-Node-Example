@@ -11,7 +11,7 @@ const app = express();
 
 app.use(helmet())
   .use(express.json())
-  .use('/privacy-policy', express.static('public/privacy.html'))
-  .use('/api', api);
+  .use('/api', api)
+  .use(express.static('public'));
 
 export default app;
