@@ -68,7 +68,7 @@ try {
     });
   }
 
-  res.status(201).json({ result: 'OK', token: await getJWT(infoRes.id) });
+  res.status(201).json({ result: 'OK', token: await getJWT(infoRes.id), userid: infoRes.id });
 } catch (e) {
   console.log(e);
   res.status(500).json({ result: 'ERROR' });
