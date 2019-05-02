@@ -2,8 +2,9 @@ import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import api from './routes';
+import config from './util/config';
 
-mongoose.connect(process.env.MONGODB_URI as string, { useNewUrlParser: true })
+mongoose.connect(config.MONGODB_URI as string, { useNewUrlParser: true })
   .then(() => console.log('Connected to DB'));
 
 const app = express();
