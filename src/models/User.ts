@@ -24,7 +24,7 @@ export interface IUser extends mongoose.Document {
 }
 
 export interface IUserModel extends mongoose.Model<IUser> {
-  mCreate(data: IRequiredInfo): Promise<IUser>;
+  mCreate(info: IRequiredInfo): Promise<IUser>;
   isExist(uniqueId: string): boolean;
   createTodo(uniqueId: string, todo: ITodo): Promise<IUser>;
   getTodos(uniqueId: string): Promise<ITodo[]>;
