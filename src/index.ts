@@ -11,7 +11,7 @@ const app = express();
 
 app.use(helmet())
   .use(express.json())
-  .use('/api', api)
-  .use(express.static('public'));
+  .use('/static', express.static('public'))
+  .use('/api', api);
 
 export default app;
