@@ -26,7 +26,9 @@ export const login = (req: Request, res: Response) => {
 };
 
 export const oauth = async (req: Request, res: Response) => {
-  const body: IOAuthRequest = req.body;
+// tslint:disable-next-line: ter-indent
+try {
+  const body: IOAuthRequest = req.query;
   const { code } = body;
 
   const { data: tokenRes } = await axios
@@ -56,4 +58,8 @@ export const oauth = async (req: Request, res: Response) => {
   await newUser.save();
 
   res.status(201).json({ result: 'OK' });
+} catch (e) {
+  console.log(e);
+  res.status(500).json({ result: 'ERROR' });
+}
 };
