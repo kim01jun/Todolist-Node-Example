@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Response, Request } from 'express';
+import jwt from 'jsonwebtoken';
 import config from '../../util/config';
 import User from '../../models/User';
 
@@ -17,6 +18,16 @@ interface IInfoResponse {
   id: string;
   name: string;
 }
+
+const getJWT = (id: string) => new Promise((resolve, reject) => {
+  jwt.sign({ id }, config.JWT_SALT, {
+    expiresIn: '30d',
+    issuer: 'todolist-example',
+  }, (err, token) => {
+    if (err) reject(err);
+    resolve(token);
+  });
+});
 
 export const login = (req: Request, res: Response) => {
   res.redirect('https://www.facebook.com/v3.3/dialog/oauth' +
@@ -49,15 +60,15 @@ try {
       },
     });
 
-  const newUser = new User({
-    accessToken: tokenRes.access_token,
-    uniqueId: infoRes.id,
-    name: infoRes.name,
-  });
+  if (!await User.isExist(infoRes.id)) {
+    await User.mCreate({
+      accessToken: tokenRes.access_token,
+      uniqueId: infoRes.id,
+      name: infoRes.name,
+    });
+  }
 
-  await newUser.save();
-
-  res.status(201).json({ result: 'OK' });
+  res.status(201).json({ result: 'OK', token: await getJWT(infoRes.id) });
 } catch (e) {
   console.log(e);
   res.status(500).json({ result: 'ERROR' });

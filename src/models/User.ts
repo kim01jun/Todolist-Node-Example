@@ -1,11 +1,22 @@
 import mongoose from 'mongoose';
 
-export interface UserModel extends mongoose.Document {
+export interface IRequiredInfo {
+  accessToken: string;
+  uniqueId: string;
+  name: string;
+}
+
+export interface IUser extends mongoose.Document {
   accessToken: string;
   uniqueId: string;
   name: string;
   projcets: string[];
   labels: string[];
+}
+
+export interface IUserModel extends mongoose.Model<IUser> {
+  mCreate(data: IRequiredInfo): Promise<IUser>;
+  isExist(uniqueId: string): boolean;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -17,7 +28,21 @@ const UserSchema = new mongoose.Schema({
     default: ['Default'],
   }],
   labels: [String],
-// tslint:disable-next-line: align
 }, { timestamps: true });
 
-export default mongoose.model('User', UserSchema);
+UserSchema.statics.isExist = async function (
+  this: mongoose.Model<IUser, IUserModel>,
+  uniqueId: string) {
+  const user = await this.findOne({ uniqueId });
+  if (user) return true;
+  return false;
+};
+
+UserSchema.statics.mCreate = function (
+  this: mongoose.Model<IUser, IUserModel>,
+  info: IRequiredInfo) {
+  const newUser = new this(info);
+  return newUser.save();
+};
+
+export default mongoose.model<IUser, IUserModel>('User', UserSchema);

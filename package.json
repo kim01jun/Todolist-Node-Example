@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.5"
   },
   "engines": {
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@types/helmet": "0.0.43",
+    "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.3.27",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",

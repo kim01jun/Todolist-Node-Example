@@ -3,6 +3,7 @@ interface IEnvironmentVar extends NodeJS.ProcessEnv {
   CLIENT_ID: string;
   CLIENT_SECRET: string;
   CSRF_TOKEN: string;
+  JWT_SALT: string;
 }
 
 const config: IEnvironmentVar = process.env as IEnvironmentVar;
