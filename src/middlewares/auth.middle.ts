@@ -2,14 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../util/config';
 
-interface IReqParam {
-  id: string;
-}
-
-interface IPayload {
-  id: string;
-}
-
 const verifyJWT = (token: string) => new Promise<IPayload>((resolve, reject) => {
   jwt.verify(token, config.JWT_SALT, (err, decoded) => {
     if (err) reject(err);

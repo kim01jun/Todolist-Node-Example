@@ -2,22 +2,8 @@ import axios from 'axios';
 import { Response, Request } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../../util/config';
-import User from '../../models/User';
-
-interface IOAuthRequest {
-  code: string;
-}
-
-interface ITokenResponse {
-  access_token: string;
-  token_token: string;
-  expires_int: string;
-}
-
-interface IInfoResponse {
-  id: string;
-  name: string;
-}
+import User from '../../models/user';
+import * as types from '../../@types/auth.ctrl';
 
 const getJWT = (id: string) => new Promise((resolve, reject) => {
   jwt.sign({ id }, config.JWT_SALT, {
@@ -39,11 +25,11 @@ export const login = (req: Request, res: Response) => {
 export const oauth = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const body: IOAuthRequest = req.query;
+  const body: types.IOAuthRequest = req.query;
   const { code } = body;
 
   const { data: tokenRes } = await axios
-    .get<ITokenResponse>('https://graph.facebook.com/v3.3/oauth/access_token', {
+    .get<types.ITokenResponse>('https://graph.facebook.com/v3.3/oauth/access_token', {
       params: {
         code,
         client_id: config.CLIENT_ID,
@@ -53,7 +39,7 @@ try {
     });
 
   const { data: infoRes } = await axios
-    .get<IInfoResponse>('https://graph.facebook.com/me', {
+    .get<types.IInfoResponse>('https://graph.facebook.com/me', {
       params: {
         fields: 'id,name',
         access_token: tokenRes.access_token,

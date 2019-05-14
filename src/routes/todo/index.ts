@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as ctrl from './ctrl';
-import auth from '../../middlewares/auth';
+import auth from '../../middlewares/auth.middle';
 
 const router = Router({ mergeParams: true });
 
