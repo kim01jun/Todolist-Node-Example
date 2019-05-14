@@ -1,7 +1,7 @@
-interface IReqParam {
+interface IReqPathParam {
   id: string;
 }
 
-interface IPayload {
+interface ITokenPayload {
   id: string;
 }

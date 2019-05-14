@@ -1,4 +1,4 @@
-export interface IReqParam {
+export interface IReqPathParam {
   id: string;
   todo?: string;
 }

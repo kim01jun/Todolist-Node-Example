@@ -2,19 +2,19 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../util/config';
 
-const verifyJWT = (token: string) => new Promise<IPayload>((resolve, reject) => {
+const verifyJWT = (token: string) => new Promise<ITokenPayload>((resolve, reject) => {
   jwt.verify(token, config.JWT_SALT, (err, decoded) => {
     if (err) reject(err);
-    resolve(decoded as IPayload);
+    resolve(decoded as ITokenPayload);
   });
 });
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const params: IReqParam = req.params;
+  const params: IReqPathParam = req.params;
   const headers = req.headers;
-  const payload: IPayload = await verifyJWT(headers.authorization as string);
+  const payload: ITokenPayload = await verifyJWT(headers.authorization as string);
 
   if (payload.id === params.id) next();
   else throw new Error('Invalid Access');

@@ -29,7 +29,7 @@ try {
   const { code } = body;
 
   const { data: tokenRes } = await axios
-    .get<types.ITokenResponse>('https://graph.facebook.com/v3.3/oauth/access_token', {
+    .get<types.IFacebookTokenResponse>('https://graph.facebook.com/v3.3/oauth/access_token', {
       params: {
         code,
         client_id: config.CLIENT_ID,
@@ -39,7 +39,7 @@ try {
     });
 
   const { data: infoRes } = await axios
-    .get<types.IInfoResponse>('https://graph.facebook.com/me', {
+    .get<types.IFacebookInfoResponse>('https://graph.facebook.com/me', {
       params: {
         fields: 'id,name',
         access_token: tokenRes.access_token,

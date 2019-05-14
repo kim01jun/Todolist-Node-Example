@@ -5,7 +5,7 @@ import * as types from '../../@types/todo.ctrl';
 export const getTodos = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const params: types.IReqParam = req.params;
+  const params: types.IReqPathParam = req.params;
   const todos = await User.getTodos(params.id);
 
   res.status(200).json(todos);
@@ -17,7 +17,7 @@ try {
 export const addTodo = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const params: types.IReqParam = req.params;
+  const params: types.IReqPathParam = req.params;
   const newTodo: types.IReqTodo = req.body;
 
   await User.createTodo(params.id, newTodo);
@@ -31,7 +31,7 @@ try {
 export const updateTodo = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const params: types.IReqParam = req.params;
+  const params: types.IReqPathParam = req.params;
   const newTodo: types.IReqTodo = req.body;
 
   if (!params.todo) return res.status(405).json({ result: 'ERROR', message: 'todo id is missing' });
@@ -46,7 +46,7 @@ try {
 export const deleteTodo = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
-  const params: types.IReqParam = req.params;
+  const params: types.IReqPathParam = req.params;
 
   if (!params.todo) return res.status(405).json({ result: 'ERROR', message: 'todo id is missing' });
   await User.deleteTodo(params.id, params.todo);
