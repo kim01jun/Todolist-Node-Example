@@ -25,7 +25,8 @@
   "scripts": {
     "start": "node dist/bin/www --production",
     "build": "npm run lint && tsc",
-    "lint": "tslint -c tslint.json -p tsconfig.json"
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "serve": "npm run build && git push heroku master"
   },
   "repository": {
     "type": "git",
