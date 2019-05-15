@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Response, Request } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../../util/config';
-import User from '../../models/user';
+import User from '../../models/User';
 import * as types from '../../@types/auth.ctrl';
 
 const getJWT = (id: string) => new Promise((resolve, reject) => {
