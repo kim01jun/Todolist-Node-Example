@@ -62,13 +62,13 @@
 - **Body (application/json)**
   - `title`
     - Type: string
-    - Description: 제목
+    - Description: 제목 (선택)
   - `content`
     - Type: string
-    - Description: 내용
+    - Description: 내용 (선택)
   - `priority`
     - Type: number
-    - Description: 우선순위
+    - Description: 우선순위 (선택)
   - `dueDate`
     - Type: Date
     - Description: 기한 (선택)
@@ -83,21 +83,6 @@
     - Description: 삭제하고자 하는 user의 id
   - `todo-id`
     - Description: 삭제하고자 하는 todo의 id
-- **Header**
-  - `Authorization`
-    - Description: 인증에 필요한 JWT
-    - example: example.token.example
-
-## PUT https://todolist.kim1jun.xyz/api/{user-id}/{todo-id}
-### Description
-- todo를 완료 처리할 수 있습니다.
-
-## Parameter
-- **Path Parameter**
-  - `user-id`
-    - Description: 완료하고자 하는 user의 id
-  - `todo-id`
-    - Description: 완료하고자 하는 todo의 id
 - **Header**
   - `Authorization`
     - Description: 인증에 필요한 JWT

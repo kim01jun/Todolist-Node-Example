@@ -32,10 +32,10 @@ export const updateTodo = async (req: Request, res: Response) => {
 // tslint:disable-next-line: ter-indent
 try {
   const params: types.IReqPathParam = req.params;
-  const newTodo: types.IReqTodo = req.body;
+  const query: types.IUpdateQueryTodo = req.body;
 
   if (!params.todo) return res.status(405).json({ result: 'ERROR', message: 'todo id is missing' });
-  await User.updateTodo(params.id, params.todo, newTodo);
+  await User.updateTodo(params.id, params.todo, query);
 
   res.status(204).json({ result: 'OK' });
 } catch (e) {

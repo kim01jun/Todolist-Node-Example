@@ -9,3 +9,7 @@ export interface IReqTodo {
   priority: number;
   dueDate?: Date;
 }
+
+export interface IUpdateQueryTodo {
+  [query: string]: string | number | boolean;
+}

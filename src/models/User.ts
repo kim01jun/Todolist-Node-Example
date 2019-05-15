@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { IUserDocument, IUserModel } from '../@types/User';
 import * as types from '../@types';
+import { IUpdateQueryTodo } from '../@types/todo.ctrl';
 
 const UserSchema = new mongoose.Schema({
   accessToken: { type: String, required: true },
@@ -49,9 +50,15 @@ UserSchema.statics.updateTodo = function (
   this: mongoose.Model<IUserDocument, IUserModel>,
   uniqueId: string,
   todoId: string,
-  newtodo: types.ITodo) {
+  query: IUpdateQueryTodo) {
+  const update: IUpdateQueryTodo = {};
+
+  Object.keys(query).forEach((e) => {
+    Object.defineProperty(update, `todos.$.${e}`, { value: query[e] });
+  });
+
   return this.findOneAndUpdate({ uniqueId, 'todos._id': todoId }, {
-    $set: { 'todos.$': newtodo },
+    $set: update,
   });
 };
 
