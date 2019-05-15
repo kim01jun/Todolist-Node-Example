@@ -18,7 +18,7 @@ const getJWT = (id: string) => new Promise((resolve, reject) => {
 export const login = (req: Request, res: Response) => {
   res.redirect('https://www.facebook.com/v3.3/dialog/oauth' +
     `?client_id=${config.CLIENT_ID}` +
-    `&redirect_uri=https://${req.hostname}/api/user/oauth` +
+    `&redirect_uri=https://${req.hostname}/api/auth/oauth` +
     `&state=${config.CSRF_TOKEN}`);
 };
 
@@ -33,7 +33,7 @@ try {
       params: {
         code,
         client_id: config.CLIENT_ID,
-        redirect_uri: `https://${req.hostname}/api/user/oauth`,
+        redirect_uri: `https://${req.hostname}/api/auth/oauth`,
         client_secret: config.CLIENT_SECRET,
       },
     });
