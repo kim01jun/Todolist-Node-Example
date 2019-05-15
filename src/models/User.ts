@@ -54,7 +54,7 @@ UserSchema.statics.updateTodo = function (
   const update: IUpdateQueryTodo = {};
 
   Object.keys(query).forEach((e) => {
-    Object.defineProperty(update, `todos.$.${e}`, { value: query[e] });
+    Object.defineProperty(update, `todos.$.${e}`, { value: query[e], enumerable: true });
   });
 
   return this.findOneAndUpdate({ uniqueId, 'todos._id': todoId }, {

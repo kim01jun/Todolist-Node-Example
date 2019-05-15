@@ -72,6 +72,9 @@
   - `dueDate`
     - Type: Date
     - Description: 기한 (선택)
+  - `done`
+    - Type: boolean
+    - Description: 완료 여부 (선택)
 
 ## DELETE https://todolist.kim1jun.xyz/api/{user-id}/{todo-id}
 ### Description
