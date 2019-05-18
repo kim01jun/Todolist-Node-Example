@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
@@ -10,6 +11,7 @@ mongoose.connect(config.MONGODB_URI as string, { useNewUrlParser: true, useFindA
 const app = express();
 
 app.use(helmet())
+  .use(cors())
   .use(express.json())
   .use('/api', api);
 
