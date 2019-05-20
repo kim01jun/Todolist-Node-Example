@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     title: String,
     content: String,
     dueDate: Date,
-    priority: Number,
+    priority: { type: Number, default: 4 },
     done: { type: Boolean, default: false },
   }],
 }, { timestamps: true });
