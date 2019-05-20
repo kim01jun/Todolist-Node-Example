@@ -21,8 +21,9 @@ try {
   const newTodo: types.IReqTodo = req.body;
 
   await User.createTodo(params.id, newTodo);
+  const todos = await User.getTodos(params.id);
 
-  res.status(201).json({ result: 'OK' });
+  res.status(201).json(todos);
 } catch (e) {
   res.status(500).json({ result: 'ERROR' });
 }
