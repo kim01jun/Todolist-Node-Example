@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Response, Request } from 'express';
 import jwt from 'jsonwebtoken';
+import qs from 'querystring';
 import config from '../../util/config';
 import User from '../../models/User';
 import * as types from '../../@types/auth.ctrl';
@@ -53,8 +54,12 @@ try {
       name: infoRes.name,
     });
   }
-
-  res.status(201).json({ result: 'OK', token: await getJWT(infoRes.id), userid: infoRes.id });
+  const result = qs.stringify({
+    token: await getJWT(infoRes.id),
+    userid: infoRes.id,
+    name: infoRes.name,
+  });
+  res.redirect(`${config.SERVICE_URL}?${result}`);
 } catch (e) {
   console.log(e);
   res.status(500).json({ result: 'ERROR' });
