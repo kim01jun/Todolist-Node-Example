@@ -36,8 +36,9 @@ try {
 
   if (!params.todo) return res.status(405).json({ result: 'ERROR', message: 'todo id is missing' });
   await User.updateTodo(params.id, params.todo, query);
+  const todos = await User.getTodos(params.id);
 
-  res.status(204).json({ result: 'OK' });
+  res.status(200).json(todos);
 } catch (e) {
   res.status(500).json({ result: 'ERROR' });
 }
@@ -50,8 +51,9 @@ try {
 
   if (!params.todo) return res.status(405).json({ result: 'ERROR', message: 'todo id is missing' });
   await User.deleteTodo(params.id, params.todo);
+  const todos = await User.getTodos(params.id);
 
-  res.status(204).json({ result: 'OK' });
+  res.status(200).json(todos);
 } catch (e) {
   res.status(500).json({ result: 'ERROR' });
 }
