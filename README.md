@@ -5,6 +5,18 @@
 - Facebook Login
 - Own TodoList
 
+# Run Locally
+- src/util/config.ts에 있는 변수들을 모두 설정해주어야 합니다
+```s
+$ export MONGODB_URI=VALUE
+$ export CLIENT_ID=VALUE
+$ export CLIENT_SECRET=VALUE
+$ export CSRF_TOKEN=VALUE
+$ export JWT_SALT=VALUE
+$ export SERVICE_URL=VALUE
+$ npm start
+```
+
 # API
 ## GET https://todolist.kim1jun.xyz/api/{user-id}
 ### Description
