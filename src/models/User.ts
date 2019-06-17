@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   todos: [{
     title: String,
-    content: String,
+    description: String,
     dueDate: Date,
     priority: { type: Number, default: 4 },
     done: { type: Boolean, default: false },

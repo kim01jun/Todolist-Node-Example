@@ -5,7 +5,7 @@ export interface IReqPathParam {
 
 export interface IReqTodo {
   title: string;
-  content: string;
+  description: string;
   priority: number;
   dueDate?: Date;
 }

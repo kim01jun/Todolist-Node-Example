@@ -6,7 +6,7 @@ export interface IUser {
 
 export interface ITodo {
   title: string;
-  content: string;
+  description: string;
   priority: number;
   dueDate?: Date;
   done?: boolean;

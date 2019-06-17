@@ -47,7 +47,7 @@ $ npm start
   - `title`
     - Type: string
     - Description: 제목
-  - `content`
+  - `description`
     - Type: string
     - Description: 내용
   - `priority`
@@ -75,7 +75,7 @@ $ npm start
   - `title`
     - Type: string
     - Description: 제목 (선택)
-  - `content`
+  - `description`
     - Type: string
     - Description: 내용 (선택)
   - `priority`
